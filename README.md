@@ -6,6 +6,3 @@ The team members are:
 - Anna Parpi
 - Antonis Stavrou
 - Antonis Stylianou (pending)
-
-
-https://astavrou16.github.io/AAA/
