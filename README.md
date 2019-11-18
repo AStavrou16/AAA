@@ -5,4 +5,4 @@ A project to demonstrate collaboration features of Git and GitHub to CO1111 stud
 The team members are:
 - Anna Parpi
 - Antonis Stavrou
-- Antonis Stylianou (pending)
+- Antonis Stylianou 
