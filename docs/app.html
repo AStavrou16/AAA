@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Treasure Hunt Web App</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+
+<div>
+    <h1>Sample Treasure Hunt Web App</h1>
+    <h3>A dynamic page enabling you to compete to the Treasure Hunt.</h3>
+    <hr>
+</div>
+
+<div>
+    <p>
+        This is where you web-app implements the Treasure Hunt client functionality.
+    </p>
+    <ul>
+        <li>Please keep all your JavaScript in a single file, e.g. named <code>th-api.js</code>. Follow the instructions in the handout for defining the right functions.</li>
+        <li>Aim to implement all the required functions: <code>list</code>, <code>start</code>, <code>question</code>, etc. as specified
+            at: <a href="http://codecyprus.org/th/guide" target="_blank">http://codecyprus.org/th/guide</a></li>.
+    </ul>
+    <p>
+        Make sure to check out the sample code in <a href="th-api.js">th-api.js</a>.
+    </p>
+</div>
+
+<div>
+    <button id="buttonHandleList" onclick="doList(this)">Reload</button>
+</div>
+
+<!--<div id="buttonReload" class="button" onclick="handleList(this)">Reload</div>-->
+<div id="loader" class="loader" hidden></div>
+
+<div>Choose a treasure Hunt</div>
+
+<div id="treasureHunts">
+    Empty
+</div>
+
+<div id="message" class="infoMessage">
+    No messages
+</div>
+
+<!--Load the API JavaScript-->
+<script src="th-api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing framework</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+
+<h1>Testing page</h1>
+
+<p>This is the page describing how this app was tested. Testing usually comprises of <i>verification</i> and <i>validation</i>.</p>
+
+<p>As an example of verification you can include Unit Tests (see below), and as an example of validation we </p>
+
+<h2>User Acceptance Plan</h2>
+
+<p>Here describe the User Acceptance plan you formed, and justify how your app performed to it.</p>
+
+<h2>Usability Assessment</h2>
+
+<p>Assess your app's performance when assessed using the standard Nielsen's Heuristics</p>
+
+<h2>Unit Tests</h2>
+
+<p>The Unit Tests make use of the corresponding Testing API available at <a href="https://codecyprus.org/th/testing" target="_blank">https://codecyprus.org/th/testing</a>.</p>
+<div id="loader" class="loader" hidden></div>
+
+<h3>Testing <code>/list</code></h3>
+
+<button id="buttonTestList" class="button" onclick="handleTestList(this)">Run Test</button>
+<button id="buttonClearList" class="button" onclick="document.getElementById('treasureHunts').innerHTML = 'The results of the test to show up here...';">Clear</button>
+
+<div id="treasureHunts" class="testMessage">
+    The results of the test to show up here...
+</div>
+
+<hr>
+
+<h3>Testing <code>/start</code></h3>
+
+<button id="buttonTestStart" class="button" onclick="handleTestStart(this)">Run Test</button>
+<button id="buttonClearStart" class="button" onclick="document.getElementById('message').innerHTML = 'Messages to show up here...'">Clear</button>
+
+<hr>
+
+<div id="message" class="errorMessage">
+    Messages to show up here...
+</div>
+
+<hr>
+
+<!--Load the API JavaScript-->
+<script src="th-api.js"></script>
+<script src="th-test-api.js"></script>
+
+</body>
+</html>
