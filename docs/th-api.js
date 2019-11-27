@@ -57,7 +57,7 @@ function callList() {
             let treasureHunts = jsonObject.treasureHunts;
             console.log(treasureHunts);
             for (let i = 0; i < treasureHunts.length; i++) {
-                treasureHuntsElement.innerHTML += "<a href='#'>" + treasureHunts[i].name + "</a><br/>"
+                treasureHuntsElement.innerHTML += "<a href='start.html'>" + treasureHunts[i].name + "</a><br>"
             }
         });
 }
