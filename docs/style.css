@@ -1,16 +1,16 @@
 h1 {
-    color: darkblue;
+    color: black;
     text-align: center;
     font-size: 60px;
 }
 button {
-    background-color: lightgoldenrodyellow;
+    background-color: lightcoral;
 }
 div {
     margin: 10px;
 }
 div.infoMessage {
-    background-color: lightblue;
+    background-color: lightcoral;
 }
 div.errorMessage {
     background-color: lightcoral;
@@ -54,4 +54,10 @@ div.testMessage {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+body{
+    text-align: center;
+}
+blockquote.twitter-timeline a{
+   text-align: center;
 }

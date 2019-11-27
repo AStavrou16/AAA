@@ -24,8 +24,8 @@ async function doList() {
     for(let i = 0; i < treasureHuntsArray.length; i++) {
         listHtml += // each treasure hunt item is shown with an individual DIV element
             "<li>" +
-            "<b>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
-            "<i>" + treasureHuntsArray[i].description + "</i><br/>" + // and the description in italics in the following line
+            "<b>" + treasureHuntsArray[i].name + "<b><br>" + // the treasure hunt name is shown in bold...
+            "<i>" + treasureHuntsArray[i].description + "</i><br>" + // and the description in italics in the following line
             "<a href=\"javascript:select(\'" + treasureHuntsArray[i].uuid + "\')\">Start</a>" + // and the description in italics in the following line
             "</li>";
     }
@@ -62,3 +62,17 @@ function callList() {
         });
 }
 callList();
+function start(){
+    let startElement = document.getElementById("start");
+    startElement.innerHTML="";
+    fetch("https://codecyprus.org/th/api/start")
+        .then(response => response.json()) //Parse JSON text to JavaScript object
+        .then(jsonObject =>{
+            let start = jsonObject.start;
+            console.log(start);
+            for (let i = 0; i < start.length; i++) {
+                start.innerHTML += "<a href='start.html'>" + start[i].name + "</a><br>"
+            }
+        });
+}
+start();
