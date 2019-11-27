@@ -1,8 +1,10 @@
 h1 {
     color: darkblue;
+    text-align: center;
+    font-size: 60px;
 }
 button {
-    background-color: lightblue;
+    background-color: lightgoldenrodyellow;
 }
 div {
     margin: 10px;

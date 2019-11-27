@@ -46,5 +46,19 @@ async function select(uuid) {
     // their name etc. and proceed to calling the '/start' command of the API to start a new session.
     console.log("Selected treasure hunt with UUID: " + uuid);
     // todo add your own code ...
-
 }
+// Function to call a list of Treasure Hunts.
+function callList() {
+    let treasureHuntsElement = document.getElementById("treasureHunts");
+    treasureHuntsElement.innerHTML = "";
+    fetch("https://codecyprus.org/th/api/list")
+        .then(response => response.json()) //Parse JSON text to JavaScript object
+        .then(jsonObject => {
+            let treasureHunts = jsonObject.treasureHunts;
+            console.log(treasureHunts);
+            for (let i = 0; i < treasureHunts.length; i++) {
+                treasureHuntsElement.innerHTML += "<a href='#'>" + treasureHunts[i].name + "</a><br/>"
+            }
+        });
+}
+callList();
