@@ -5,6 +5,7 @@ h1 {
 }
 button {
     background-color: lightcoral;
+    font-size: 20px;
 }
 div {
     margin: 10px;
@@ -57,6 +58,7 @@ div.testMessage {
 }
 body{
     text-align: center;
+    font-size: 20px;
 }
 blockquote.twitter-timeline a{
    text-align: center;
