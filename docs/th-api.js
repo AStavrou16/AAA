@@ -72,7 +72,7 @@ function start(){
 
             let playerName=document.getElementById("playerName");
                 console.log(player);
-                if(player["status"] ==="OK"){
+                if(player["status"] =="OK"){
                     //do something
                 }else{
                     player.innerHTML += "<div>"+player["errorMessages"][0]+"</div><br>";
