@@ -63,16 +63,23 @@ function callList() {
 }
 callList();
 function start(){
-    let startElement = document.getElementById("start");
+    let startElement = document.getElementById("player");
     startElement.innerHTML="";
     fetch("https://codecyprus.org/th/api/start")
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject =>{
-            let start = jsonObject.start;
-            console.log(start);
-            for (let i = 0; i < start.length; i++) {
-                start.innerHTML += "<a href='start.html'>" + start[i].name + "</a><br>"
-            }
-        });
+           let player = jsonObject.start;
+
+            let playerName=document.getElementById("playerName");
+                console.log(player);
+                if(player["status"] =="OK"){
+                    //do something
+                }else{
+                    player.innerHTML += "<div>"+player["errorMessages"][0]+"</div><br>";
+                }
+
+        }
+        );
 }
+
 start();
