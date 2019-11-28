@@ -57,9 +57,10 @@ div.testMessage {
     100% { transform: rotate(360deg); }
 }
 body{
+    font-family: sans-serif;
     text-align: center;
     font-size: 20px;
 }
-blockquote.twitter-timeline a{
-   text-align: center;
+html{
+    background-color: lightgoldenrodyellow;
 }
