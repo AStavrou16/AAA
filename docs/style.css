@@ -13,8 +13,9 @@ div {
 div.infoMessage {
     background-color: lightcoral;
 }
-div.errorMessage {
-    background-color: lightcoral;
+.errorMessage {
+   color: red;
+    font-size: 12px;
 }
 div.treasureHuntItem {
     padding: 10px;

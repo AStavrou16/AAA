@@ -12,9 +12,11 @@
         Tell us your name to start playing!
         <br><br>
         <div>Name: <input id="playerName" class="input" type="text" ></div>
-        <br><br><br>
-        <div id="errorMessage"></div>
-        <button onclick="location.href='https://codecyprus.org/th/api/start';" id="start" value="Start">Continue</button>
+        <br>
+        <div id="errorMessage" class="errorMessage">
+        </div>
+        <button onclick="start();" id="start" value="Start">Continue</button>
     </div>
+    <script src="th-api.js"></script>
 </body>
 </html>

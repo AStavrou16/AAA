@@ -62,22 +62,25 @@ function callList() {
         });
 }
 callList();
-function start(){
-    let startElement = document.getElementById("player");
-    startElement.innerHTML="";
-    fetch("https://codecyprus.org/th/api/start")
-        .then(response => response.json()) //Parse JSON text to JavaScript object
-        .then(jsonObject =>{
-           let player = jsonObject.start;
 
-            let playerName=document.getElementById("playerName");
-                console.log(player);
-                if(player["status"] =="OK"){
+function start(){
+    let startElement = document.getElementById("errorMessage");
+    startElement.innerHTML="";
+    let playerName=document.getElementById("playerName").value;
+    let app="treasure-hunt";
+    let uuid="";  /*uuid HOW TO GET UUID FROM TREASURE HUNT??*/
+    let URL="https://codecyprus.org/th/api/start?player="+playerName+"&app="+app+"&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw";
+    fetch(URL)
+        .then(response => response.json()) //Parse JSON text to JavaScript object
+        .then(jsonObject => {
+                let startSession = jsonObject;
+                if(startSession.status ==='OK'){
                     //do something
+                    window.location.href="question.html?session="+startSession.session;
                 }else{
-                    player.innerHTML += "<div>"+player["errorMessages"][0]+"</div><br>";
+                    startElement.innerHTML +=startSession.errorMessages+"<br>";
                 }
         }
         );
 }
-start();
+
