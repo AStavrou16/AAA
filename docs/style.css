@@ -61,6 +61,9 @@ body{
     font-family: sans-serif;
     text-align: center;
     font-size: 20px;
+    background-image: url("BackroundImage.png");
+    background-repeat:no-repeat;
+    background-size:contain;
 }
 html{
     background-color: lightgoldenrodyellow;
