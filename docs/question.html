@@ -3,8 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Question</title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body onload="LoadQuestion();">
 
+    <label for="q">Question</label>
+
+    <div id="question"></div>
+
+    <div id="text">
+        <form  action="javascript:answer()">
+            <input id="q" type="text">
+            <input id="submitText" value="submit" type="submit">
+        </form>
+    </div>
+
+    <div id="boolean">
+        <button value="True" onclick="answerTrue()">True</button>
+        <button value="False" onclick="answerFalse()">False</button>
+    </div>
+
+    <div id="integer">
+        <form action="javascript:answer()">
+            <input type="number">
+            <input id="submitInt" value="submit" type="submit">
+        </form>
+    </div>
+
+    <div id="decimal">
+        <input type="number" onkeyup="textarea.value.match(/^\d+(\.\d+)?$/)">
+        <input id="submitDecimal" value="submit" type="submit">
+    </div>
+
+    <div id="mcq">
+        <button value="A" onclick="answer('A')">A</button>
+        <button value="B" onclick="answer('B')">B</button>
+        <button value="C" onclick="answer('C')">C</button>
+        <button value="D" onclick="answer('D')">D</button>
+    </div>
+
+    <div id="errorMessages" class="errorMessage"></div>
+    <script src="th-api.js"></script>
 </body>
 </html>

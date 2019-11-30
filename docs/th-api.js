@@ -1,5 +1,6 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
+const Test_Question = "question?question-type=";
 
 /**
  * An asynchronous function to realize the functionality of getting the available 'treasure hunts' (using /list) and
@@ -50,7 +51,6 @@ async function select(uuid) {
 // Function to call a list of Treasure Hunts.
 function callList() {
     let treasureHuntsElement = document.getElementById("treasureHunts");
-    treasureHuntsElement.innerHTML = "";
     fetch("https://codecyprus.org/th/api/list")
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject => {
@@ -65,17 +65,14 @@ callList();
 
 function start(){
     let startElement = document.getElementById("errorMessage");
-    startElement.innerHTML="";
     let playerName=document.getElementById("playerName").value;
     let app="treasure-hunt";
-    let uuid="";  /*uuid HOW TO GET UUID FROM TREASURE HUNT??*/
     let URL="https://codecyprus.org/th/api/start?player="+playerName+"&app="+app+"&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw";
     fetch(URL)
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject => {
                 let startSession = jsonObject;
                 if(startSession.status ==='OK'){
-                    //do something
                     window.location.href="question.html?session="+startSession.session;
                 }else{
                     startElement.innerHTML +=startSession.errorMessages+"<br>";
@@ -83,4 +80,79 @@ function start(){
         }
         );
 }
+
+function LoadQuestion(){
+    fetch(TH_BASE_URL+"question?session="+ getParameter('session'))
+        .then(response => response.json())
+        .then(json => handleQuestionLibrary(json))
+}
+
+function getParameter(parameter) {
+    let url =  new URL(window.location.href);
+    return url.searchParams.get(parameter)
+}
+function handleQuestionLibrary(json) {
+    let questionElement = document.getElementById("errorMessages");
+    console.log(json);
+    if(json.status === "OK") {
+        document.getElementById('question').innerHTML = json.questionText;
+
+        if (json.questionType === 'BOOLEAN') {
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('boolean').style.display = 'block';
+            document.getElementById('integer').style.display = 'none';
+            document.getElementById('decimal').style.display = 'none';
+            document.getElementById('mcq').style.display = 'none';
+        }
+        else if (json.questionType === 'TEXT'){
+            document.getElementById('text').style.display = 'block';
+            document.getElementById('boolean').style.display = 'none';
+            document.getElementById('integer').style.display = 'none';
+            document.getElementById('decimal').style.display = 'none';
+            document.getElementById('mcq').style.display = 'none';
+        }
+        else if (json.questionType === 'NUMERIC'){
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('boolean').style.display = 'none';
+            document.getElementById('integer').style.display = 'none';
+            document.getElementById('decimal').style.display = 'block';
+            document.getElementById('mcq').style.display = 'none';
+        }
+        else if (json.questionType === 'MCQ'){
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('boolean').style.display = 'none';
+            document.getElementById('integer').style.display = 'none';
+            document.getElementById('decimal').style.display = 'none';
+            document.getElementById('mcq').style.display = 'block';
+        }
+        else if (json.questionType === 'INTEGER'){
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('boolean').style.display = 'none';
+            document.getElementById('integer').style.display = 'block';
+            document.getElementById('decimal').style.display = 'none';
+            document.getElementById('mcq').style.display = 'none';
+        }
+    }
+    else{
+        questionElement.innerHTML +=json.errorMessages+"<br>";
+    }
+}
+
+function answer(v) {
+    let a =document.getElementById('q').value;
+    loadAnswer(a);
+}
+
+function answerTrue(v) {
+  loadAnswer('true');
+}
+
+function answerFalse(v) {
+    loadAnswer('false');
+}
+
+function loadAnswer() {
+    //todo send the answer to the server via the API
+}
+LoadQuestion();
 
