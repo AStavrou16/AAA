@@ -8,26 +8,26 @@
 </head>
 <body onload="LoadQuestion();">
 
-    <label for="q">Question</label>
+    <label for="txt">Question</label>
 
     <div id="question"></div>
 
     <div id="text">
-        <form  action="javascript:answer()">
-            <input id="q" type="text">
-            <input id="submitText" value="submit" type="submit">
+        <form  action="javascript:loadAnswer()">
+            <input id="txt" type="text">
+            <input id="submitText" value="submit" type="submit" onclick="loadAnswer(document.getElementById('txt').value)">
         </form>
     </div>
 
     <div id="boolean">
-        <button value="True" onclick="answerTrue()">True</button>
-        <button value="False" onclick="answerFalse()">False</button>
+        <button value="True" onclick="loadAnswer('true')">True</button>
+        <button value="False" onclick="loadAnswer('false')">False</button>
     </div>
 
     <div id="integer">
-        <form action="javascript:answer()">
-            <input type="number">
-            <input id="submitInt" value="submit" type="submit">
+        <form action="javascript:loadAnswer()">
+            <input  id="int" type="number">
+            <input id="submitInt" value="submit" type="submit" onclick="loadAnswer(document.getElementById('int').value)">
         </form>
     </div>
 
@@ -37,13 +37,14 @@
     </div>
 
     <div id="mcq">
-        <button value="A" onclick="answer('A')">A</button>
-        <button value="B" onclick="answer('B')">B</button>
-        <button value="C" onclick="answer('C')">C</button>
-        <button value="D" onclick="answer('D')">D</button>
+        <button value="A" onclick="loadAnswer('A')">A</button>
+        <button value="B" onclick="loadAnswer('B')">B</button>
+        <button value="C" onclick="loadAnswer('C')">C</button>
+        <button value="D" onclick="loadAnswer('D')">D</button>
     </div>
 
     <div id="errorMessages" class="errorMessage"></div>
+    <div id="requireLocation"></div>
     <script src="th-api.js"></script>
 </body>
 </html>

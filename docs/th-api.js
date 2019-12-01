@@ -93,7 +93,7 @@ function getParameter(parameter) {
 }
 function handleQuestionLibrary(json) {
     let questionElement = document.getElementById("errorMessages");
-    console.log(json);
+
     if(json.status === "OK") {
         document.getElementById('question').innerHTML = json.questionText;
 
@@ -136,23 +136,16 @@ function handleQuestionLibrary(json) {
     else{
         questionElement.innerHTML +=json.errorMessages+"<br>";
     }
+    if (json.completed===false){
+        LoadQuestion();
+    }
 }
 
-function answer(v) {
-    let a =document.getElementById('q').value;
-    loadAnswer(a);
+function loadAnswer(ans) {
+    fetch(TH_BASE_URL+"answer?session="+ getParameter('session') + "&answer="+ ans)
+        .then(response => response.json())
+        .then(json => handleQuestionLibrary(json))
 }
 
-function answerTrue(v) {
-  loadAnswer('true');
-}
-
-function answerFalse(v) {
-    loadAnswer('false');
-}
-
-function loadAnswer() {
-    //todo send the answer to the server via the API
-}
 LoadQuestion();
 
