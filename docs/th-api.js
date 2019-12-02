@@ -96,7 +96,7 @@ console.log(json);
         questionElement.innerHTML +=json['errorMessages']+"<br>";
     }
     if (json['completed']===true){
-        //MOVE TO SCORE
+        window.location.href='score.html?session='+getParameter('session');
     }
     if (navigator.geolocation) {
         if(json['requiresLocation']===true) {
@@ -143,6 +143,22 @@ function skip() {
                 error.innerHTML += json['errorMessages']
             }
         }
+        );
+}
+function score() {
+    fetch(TH_BASE_URL+"score?session="+ getParameter('session'))
+        .then(response => response.json())
+        .then(json => {
+                if (json.status === 'OK') {
+                    let name = document.getElementById('username');
+                    name.innerHTML = "Username : " + json.player;
+                    let score = document.getElementById('points');
+                    score.innerHTML = "Points : " + json.score;
+                } else {
+                    let error = document.getElementById("errorMsg");
+                    error.innerHTML += json['errorMessages']
+                }
+            }
         );
 }
 

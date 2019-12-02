@@ -8,31 +8,34 @@
 </head>
 <body onload="LoadQuestion();">
 
-    <label>Question</label>
-
+    <h1>Question</h1>
     <div id="question"></div>
+
 <!-- NEED CHANGE. GETTING THE ANSWER AS TEXT-->
     <div id="text">
             <input id="textAnswer" type="text">
             <input id="submitText" value="submit" type="submit" onclick="loadAnswer(document.getElementById('textAnswer').value)">
     </div>
+
     <!--GETTING THE ANSWER AS BOOLEAN-->
     <div id="boolean">
+
         <button value="True" onclick="loadAnswer('true')">True</button>
         <button value="False" onclick="loadAnswer('false')">False</button>
     </div>
+
     <!-- NEED CHANGE. GETTING THE ANSWER AS INTEGER-->
     <div id="integer">
-
             <input  id="int" type="number">
             <input id="submitInt" value="submit" type="submit" onclick="loadAnswer(document.getElementById('int').value)">
-
     </div>
+
     <!--GETTING THE ANSWER AS DECIMAL-->
     <div id="decimal">
         <input type="number" onkeyup="textarea.value.match(/^\d+(\.\d+)?$/)">
         <input id="submitDecimal" value="submit" type="submit">
     </div>
+
     <!--GETTING THE ANSWER AS CHARACTER-->
     <div id="mcq">
         <button value="A" onclick="loadAnswer('A')">A</button>
@@ -40,7 +43,9 @@
         <button value="C" onclick="loadAnswer('C')">C</button>
         <button value="D" onclick="loadAnswer('D')">D</button>
     </div>
+
     <button onclick="skip()">Skip</button>
+
     <!--DISPLAY ERROR MESSAGE-->
     <div id="errorMessages" class="errorMessage"></div>
 
