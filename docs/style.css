@@ -48,3 +48,6 @@ body,html{
     background-repeat:no-repeat;
     background-size:cover;
 }
+[id^="username"],[id^="points"]{
+    font-size: 20px;
+}
