@@ -7,14 +7,14 @@ h2 {
     font-size: 30px;
 }
 button {
-    background-color: lightcoral;
+    background-color: lightcyan;
     font-size: 20px;
 }
 div {
     margin: 10px;
 }
 div.infoMessage {
-    background-color: lightcoral;
+    background-color: lightcyan;
 }
 .errorMessage {
    color: red;
@@ -34,7 +34,7 @@ div.button {
 }
 
 div.testMessage {
-    background-color: yellow;
+    background-color: lightcyan;
     border: 1px black dotted;
 }
 

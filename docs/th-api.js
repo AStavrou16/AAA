@@ -62,6 +62,9 @@ console.log(json);
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
+            if (json['canBeSkipped'] === false){
+                document.getElementById('skip').style.display = 'none';
+            }
         }
         else if (json['questionType'] === 'TEXT'){
             document.getElementById('text').style.display = 'block';
@@ -69,6 +72,9 @@ console.log(json);
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
+            if (json['canBeSkipped'] === false){
+                document.getElementById('skip').style.display = 'none';
+            }
         }
         else if (json['questionType'] === 'NUMERIC'){
             document.getElementById('text').style.display = 'none';
@@ -76,6 +82,9 @@ console.log(json);
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'block';
             document.getElementById('mcq').style.display = 'none';
+            if (json['canBeSkipped'] === false){
+                document.getElementById('skip').style.display = 'none';
+            }
         }
         else if (json['questionType'] === 'MCQ'){
             document.getElementById('text').style.display = 'none';
@@ -83,6 +92,9 @@ console.log(json);
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'block';
+            if (json['canBeSkipped'] === false){
+                document.getElementById('skip').style.display = 'none';
+            }
         }
         else if (json['questionType'] === 'INTEGER'){
             document.getElementById('text').style.display = 'none';
@@ -90,6 +102,9 @@ console.log(json);
             document.getElementById('integer').style.display = 'block';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
+            if (json['canBeSkipped'] === false){
+                document.getElementById('skip').style.display = 'none';
+            }
         }
     }
     else{
@@ -136,6 +151,9 @@ function skip() {
     fetch(TH_BASE_URL+"skip?session="+ getParameter('session'))
         .then(response => response.json())
         .then(json => {
+            if (json.canBeSkipped === false){
+                document.getElementById('skip').style.display = 'none';
+            }
             if (json.status === 'OK') {
                 window.location.href = "question.html?session=" + getParameter(['session']);
             } else {
