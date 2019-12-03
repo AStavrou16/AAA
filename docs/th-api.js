@@ -55,26 +55,22 @@ function handleQuestionLibrary(json) {
 console.log(json);
     if(json.status === "OK") {
         document.getElementById('question').innerHTML = json['questionText'];
-
+        if (json['canBeSkipped'] === false){
+            document.getElementById('skip').style.display = 'none';
+        }
         if (json['questionType'] === 'BOOLEAN') {
             document.getElementById('text').style.display = 'none';
             document.getElementById('boolean').style.display = 'block';
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
-            if (json['canBeSkipped'] === false){
-                document.getElementById('skip').style.display = 'none';
-            }
         }
-        else if (json['questionType'] === 'TEXT'){
+        else if (json['questionType'] === 'TEXT') {
             document.getElementById('text').style.display = 'block';
             document.getElementById('boolean').style.display = 'none';
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
-            if (json['canBeSkipped'] === false){
-                document.getElementById('skip').style.display = 'none';
-            }
         }
         else if (json['questionType'] === 'NUMERIC'){
             document.getElementById('text').style.display = 'none';
@@ -82,9 +78,6 @@ console.log(json);
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'block';
             document.getElementById('mcq').style.display = 'none';
-            if (json['canBeSkipped'] === false){
-                document.getElementById('skip').style.display = 'none';
-            }
         }
         else if (json['questionType'] === 'MCQ'){
             document.getElementById('text').style.display = 'none';
@@ -92,9 +85,6 @@ console.log(json);
             document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'block';
-            if (json['canBeSkipped'] === false){
-                document.getElementById('skip').style.display = 'none';
-            }
         }
         else if (json['questionType'] === 'INTEGER'){
             document.getElementById('text').style.display = 'none';
@@ -102,9 +92,6 @@ console.log(json);
             document.getElementById('integer').style.display = 'block';
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
-            if (json['canBeSkipped'] === false){
-                document.getElementById('skip').style.display = 'none';
-            }
         }
     }
     else{
