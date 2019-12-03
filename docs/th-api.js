@@ -23,7 +23,7 @@ function callList() {
 callList();
 
 function start(){
-    let startElement = document.getElementById("errorMessage");
+    let error = document.getElementById("errorMessages");
     let playerName=document.getElementById("playerName").value;
     let app="treasure-hunt";
     let URL="https://codecyprus.org/th/api/start?player="+playerName+"&app="+app+"&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw";
@@ -34,7 +34,7 @@ function start(){
                 if(startSession.status ==='OK'){
                     window.location.href="question.html?session="+startSession['session'];
                 }else{
-                    startElement.innerHTML +=startSession['errorMessages']+"<br>";
+                    error.innerHTML +=startSession['errorMessages']+"<br>";
                 }
         }
         );
@@ -55,6 +55,9 @@ function handleQuestionLibrary(json) {
 console.log(json);
     if(json.status === "OK") {
         document.getElementById('question').innerHTML = json['questionText'];
+        if (json['completed']===true){
+            window.location.href='score.html?session='+getParameter('session');
+        }
         if (json['canBeSkipped'] === false){
             document.getElementById('skip').style.display = 'none';
         }
@@ -96,9 +99,6 @@ console.log(json);
     }
     else{
         questionElement.innerHTML +=json['errorMessages']+"<br>";
-    }
-    if (json['completed']===true){
-        window.location.href='score.html?session='+getParameter('session');
     }
     if (navigator.geolocation) {
         if(json['requiresLocation']===true) {
