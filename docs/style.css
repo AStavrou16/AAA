@@ -42,9 +42,9 @@ body{
     font-family: sans-serif;
     text-align: center;
     font-size: 20px;
-    background-image: url("BackroundImage.png");
+    background-image: url("background.jpg");
     background-repeat:no-repeat;
-    background-size:contain;
+    background-size: auto;
 }
 
 html{
