@@ -130,15 +130,24 @@ function sendLocation(position) {
 function loadAnswer(ans) {
     fetch(TH_BASE_URL+"answer?session="+ getParameter('session') + "&answer="+ ans)
         .then(response => response.json())
-        .then(json => handleQuestionLibrary(json));
-     window.location.reload();
+        .then(json => {
+            if (json.status=== 'OK' && json['correct'] === false){
+                let error = document.getElementById("errorMessages");
+                error.innerHTML += json['message']
+                let score = document.getElementById("score");
+                score.innerHTML += json['scoreAdjustment'] + " points"
+            }
+            else if (json.status=== 'OK' && json['correct'] === true) {
+                window.location.reload();
+            }
+});
 }
 //SKIP
 function skip() {
     fetch(TH_BASE_URL+"skip?session="+ getParameter('session'))
         .then(response => response.json())
         .then(json => {
-            if (json.canBeSkipped === false){
+            if (json['canBeSkipped'] === false){
                 document.getElementById('skip').style.display = 'none';
             }
             if (json.status === 'OK') {
@@ -158,7 +167,7 @@ function score() {
                     let name = document.getElementById('username');
                     name.innerHTML = "Username : " + json.player;
                     let score = document.getElementById('points');
-                    score.innerHTML = "Points : " + json.score;
+                    score.innerHTML = "Points : " + json['score'];
                 } else {
                     let error = document.getElementById("errorMsg");
                     error.innerHTML += json['errorMessages']

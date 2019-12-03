@@ -4,7 +4,7 @@ h1 {
 }
 h2 {
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
 }
 button {
     background-color: lightcyan;
@@ -20,6 +20,7 @@ div.infoMessage {
    color: red;
     font-size: 14px;
 }
+
 div.treasureHuntItem {
     padding: 10px;
     background-color: lightcyan;
@@ -49,5 +50,9 @@ body,html{
     background-size:cover;
 }
 [id^="username"],[id^="points"]{
-    font-size: 20px;
+    font-size: 25px;
+}
+[id^="score"]{
+    color: red;
+    font-size: 14px;
 }
