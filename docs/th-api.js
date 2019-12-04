@@ -116,10 +116,7 @@ function sendLocation(position) {
     fetch(TH_BASE_URL+"location?session="+ getParameter('session') + "&latitude="+ lat + "&longitude=" + lng)
         .then(response => response.json())
         .then(json => {
-           if (json.status=== 'OK'){
-               //????????
-           }
-           else{
+           if (json.status=== 'ERROR'){
                let error = document.getElementById("errorMessages");
                error.innerHTML += json['errorMessages']
            }
