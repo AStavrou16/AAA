@@ -14,7 +14,6 @@ function callList() {
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject => {
             let treasureHunts = jsonObject['treasureHunts'];
-            console.log(treasureHunts);
             for (let i = 0; i < treasureHunts.length; i++) {
                 treasureHuntsElement.innerHTML += "<a href='start.html'>" + treasureHunts[i].name + "</a><br>"
             }
@@ -52,7 +51,6 @@ function getParameter(parameter) {
 }
 function handleQuestionLibrary(json) {
     let questionElement = document.getElementById("errorMessages");
-console.log(json);
     if(json.status === "OK") {
         document.getElementById('question').innerHTML = json['questionText'];
 
@@ -135,7 +133,7 @@ function loadAnswer(ans) {
         .then(json => {
             if (json.status=== 'OK' && json['correct'] === false){
                 let error = document.getElementById("errorMessages");
-                error.innerHTML += json['message']
+                error.innerHTML += json['message'];
                 let score = document.getElementById("score");
                 score.innerHTML += json['scoreAdjustment'] + " points"
             }
@@ -171,11 +169,32 @@ function score() {
                     let score = document.getElementById('points');
                     score.innerHTML = "Points : " + json['score'];
                 } else {
-                    let error = document.getElementById("errorMsg");
+                    let error = document.getElementById("errorMessages");
                     error.innerHTML += json['errorMessages']
                 }
             }
         );
+}
+function Leaderboard() {
+    let myLeaderboard = document.getElementById("leaderboard");
+    fetch(TH_BASE_URL+"leaderboard?session="+ getParameter('session') + "&sorted&limit=10")
+        .then(response => response.json()) //Parse JSON text to JavaScript object
+        .then(json => {
+            if (json['status'] === 'ERROR'){
+                let error = document.getElementById("errorMessages");
+                error.innerHTML += json['errorMessages']
+            }
+            else {
+                let leaderboard = json['leaderboard'];
+                for (let i = 0; i < leaderboard.length; i++) {
+                    myLeaderboard.innerHTML += "<a>" + leaderboard[i]['player'] + "</a>";
+                    myLeaderboard.innerHTML += "<a>" + leaderboard[i]['score'] + "</a>";
+                    myLeaderboard.innerHTML += "<a>" + leaderboard[i]['completionTime'] + "</a><br>";
+                }
+            }
+
+
+        });
 }
 
 
