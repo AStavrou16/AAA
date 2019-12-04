@@ -55,6 +55,7 @@ function handleQuestionLibrary(json) {
 console.log(json);
     if(json.status === "OK") {
         document.getElementById('question').innerHTML = json['questionText'];
+
         if (json['completed']===true){
             window.location.href='score.html?session='+getParameter('session');
         }
@@ -96,10 +97,15 @@ console.log(json);
             document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'none';
         }
+        setInterval(getLocation(json),60000)
     }
     else{
         questionElement.innerHTML +=json['errorMessages']+"<br>";
     }
+
+}
+
+function getLocation(json) {
     if (navigator.geolocation) {
         if(json['requiresLocation']===true) {
             navigator.geolocation.getCurrentPosition(sendLocation);
@@ -109,7 +115,6 @@ console.log(json);
         alert("Geolocation is not supported by your browser.");
     }
 }
-
 function sendLocation(position) {
     let lat = position.coords.latitude;
     let lng = position.coords.longitude;
