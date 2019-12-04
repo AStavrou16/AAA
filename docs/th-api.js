@@ -49,8 +49,14 @@ function getParameter(parameter) {
     let url =  new URL(window.location.href);
     return url.searchParams.get(parameter)
 }
+document.getElementById('text').style.display = 'none';
+document.getElementById('integer').style.display = 'none';
+document.getElementById('decimal').style.display = 'none';
+document.getElementById('mcq').style.display = 'none';
+document.getElementById('boolean').style.display = 'none';
 function handleQuestionLibrary(json) {
     let questionElement = document.getElementById("errorMessages");
+
     if(json.status === "OK") {
         document.getElementById('question').innerHTML = json['questionText'];
 
@@ -61,39 +67,19 @@ function handleQuestionLibrary(json) {
             document.getElementById('skip').style.display = 'none';
         }
         if (json['questionType'] === 'BOOLEAN') {
-            document.getElementById('text').style.display = 'none';
             document.getElementById('boolean').style.display = 'block';
-            document.getElementById('integer').style.display = 'none';
-            document.getElementById('decimal').style.display = 'none';
-            document.getElementById('mcq').style.display = 'none';
         }
         else if (json['questionType'] === 'TEXT') {
             document.getElementById('text').style.display = 'block';
-            document.getElementById('boolean').style.display = 'none';
-            document.getElementById('integer').style.display = 'none';
-            document.getElementById('decimal').style.display = 'none';
-            document.getElementById('mcq').style.display = 'none';
         }
         else if (json['questionType'] === 'NUMERIC'){
-            document.getElementById('text').style.display = 'none';
-            document.getElementById('boolean').style.display = 'none';
-            document.getElementById('integer').style.display = 'none';
             document.getElementById('decimal').style.display = 'block';
-            document.getElementById('mcq').style.display = 'none';
         }
         else if (json['questionType'] === 'MCQ'){
-            document.getElementById('text').style.display = 'none';
-            document.getElementById('boolean').style.display = 'none';
-            document.getElementById('integer').style.display = 'none';
-            document.getElementById('decimal').style.display = 'none';
             document.getElementById('mcq').style.display = 'block';
         }
         else if (json['questionType'] === 'INTEGER'){
-            document.getElementById('text').style.display = 'none';
-            document.getElementById('boolean').style.display = 'none';
             document.getElementById('integer').style.display = 'block';
-            document.getElementById('decimal').style.display = 'none';
-            document.getElementById('mcq').style.display = 'none';
         }
         setInterval(getLocation(json),60000)
     }
@@ -176,7 +162,7 @@ function score() {
         );
 }
 function Leaderboard() {
-    let myLeaderboard = document.getElementById("leaderboard");
+    let list = '<ol>';
     fetch(TH_BASE_URL+"leaderboard?session="+ getParameter('session') + "&sorted&limit=10")
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(json => {
@@ -186,14 +172,12 @@ function Leaderboard() {
             }
             else {
                 let leaderboard = json['leaderboard'];
-                for (let i = 0; i < leaderboard.length; i++) {
-                    myLeaderboard.innerHTML += "<a>" + leaderboard[i]['player'] + "</a>";
-                    myLeaderboard.innerHTML += "<a>" + leaderboard[i]['score'] + "</a>";
-                    myLeaderboard.innerHTML += "<a>" + leaderboard[i]['completionTime'] + "</a><br>";
+                for(let i=0;i<leaderboard.length;i++){
+                    list += '<li>' + leaderboard[i]['player'] + ", " + leaderboard[i]['score'] + ", " + leaderboard[i]['completionTime'] + "</li>";
                 }
+                list+='</ol>';
+                document.getElementById('list').innerHTML=list;
             }
-
-
         });
 }
 
