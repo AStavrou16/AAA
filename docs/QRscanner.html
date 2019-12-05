@@ -42,35 +42,13 @@
     var scanner = new Instascan.Scanner(opts);
     Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
-            scanner.start(cameras[0]);
+            scanner.start(cameras[1]);
         } else {
             console.error('No cameras found.');
             alert("No cameras found.");
         }
-        let flipBtn = document.querySelector('flip-btn');
-        let stream = null;
-        flipBtn.addEventListener('click', function(){
-            if( stream == null ) return;
-            // we need to flip, stop everything
-            stream.getTracks().forEach(t => {
-                t.stop();
-            });
-            // toggle / flip
-            scanner.start(cameras[1]);
-            capture();
-        })
-    }).catch(function (e) {
-        console.error(e);
-    });
-    scanner.addListener('scan', function (content) {
-        console.log(content);
-        document.getElementById("content").innerHTML = content;
-    });
-
+    })
 </script>
-<button id="flip-btn">
-    Flip Camera
-</button>
 <br><br>
 <button onclick="location.href='question.html?session=' + getParameter('session');">Go Back!</button>
 <script src="th-api.js"></script>
