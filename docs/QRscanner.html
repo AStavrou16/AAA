@@ -48,6 +48,13 @@
             alert("No cameras found.");
         }
     })
+    .catch(function (e) {
+        console.error(e);
+    });
+    scanner.addListener('scan', function (content) {
+        console.log(content);
+        document.getElementById("content").innerHTML = content;
+    });
 </script>
 <br><br>
 <button onclick="location.href='question.html?session=' + getParameter('session');">Go Back!</button>
