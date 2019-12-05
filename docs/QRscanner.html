@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>QR Code Reader</title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <video id="preview"></video>
@@ -60,7 +62,7 @@
     }
     let stream = null;
     flipBtn.addEventListener('click', function(){
-        if( stream == null ) return
+        if( stream == null ) return;
         // we need to flip, stop everything
         stream.getTracks().forEach(t => {
             t.stop();
@@ -73,5 +75,8 @@
 <button disabled id="flip-btn">
     Flip Camera
 </button>
+<br><br>
+<button onclick="location.href='question.html?session=' + getParameter('session');">Go Back!</button>
+<script src="th-api.js"></script>
 </body>
 </html>
