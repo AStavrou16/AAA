@@ -54,7 +54,7 @@
         console.log(content);
         document.getElementById("content").innerHTML = content;
     });
-    let flipBtn = document.querySelector('#flip-btn');
+    let flipBtn = document.querySelector('flip-btn');
     let shouldFaceUser = true;
     let supports = navigator.mediaDevices.getSupportedConstraints();
     if( supports['facingMode'] === true ) {
