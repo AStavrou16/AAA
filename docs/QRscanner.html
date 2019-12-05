@@ -47,6 +47,18 @@
             console.error('No cameras found.');
             alert("No cameras found.");
         }
+        let flipBtn = document.querySelector('flip-btn');
+        let stream = null;
+        flipBtn.addEventListener('click', function(){
+            if( stream == null ) return;
+            // we need to flip, stop everything
+            stream.getTracks().forEach(t => {
+                t.stop();
+            });
+            // toggle / flip
+            scanner.start(cameras[1]);
+            capture();
+        })
     }).catch(function (e) {
         console.error(e);
     });
@@ -54,23 +66,7 @@
         console.log(content);
         document.getElementById("content").innerHTML = content;
     });
-    let flipBtn = document.querySelector('flip-btn');
-    let shouldFaceUser = true;
-    let supports = navigator.mediaDevices.getSupportedConstraints();
-    if( supports['facingMode'] === true ) {
-        flipBtn.disabled = false;
-    }
-    let stream = null;
-    flipBtn.addEventListener('click', function(){
-        if( stream == null ) return;
-        // we need to flip, stop everything
-        stream.getTracks().forEach(t => {
-            t.stop();
-        });
-        // toggle / flip
-        shouldFaceUser = !shouldFaceUser;
-        capture();
-    })
+
 </script>
 <button id="flip-btn">
     Flip Camera
