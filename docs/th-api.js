@@ -1,9 +1,3 @@
-/*
-ISSUES:
-LOCATION
-TEXT ANSWER IS NOT WORKING
-
- */
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
 
