@@ -12,17 +12,18 @@ function callList() {
             for (let i = 0; i < treasureHunts.length; i++) {
                 let uuid = treasureHunts[i]['uuid'];
                 console.log(uuid);
-                treasureHuntsElement.innerHTML += "<a href='start.html?uuid='>" + treasureHunts[i].name + "</a><br>"
+                treasureHuntsElement.innerHTML += "<a href='start.html?uuid=" + treasureHunts[i].uuid + "'>" + treasureHunts[i].name + "</a><br>"
             }
         });
 }
 callList();
 
 function start(){
+    let uuid = getParameter("uuid");
     let error = document.getElementById("errorMessages");
     let playerName=document.getElementById("playerName").value;
-    let app="treasure-hunt";
-    let URL=TH_BASE_URL+"start?player="+playerName+"&app="+app+"&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw";
+    let app="teamAAA";
+    let URL=TH_BASE_URL+"start?player="+playerName+"&app="+app+"&treasure-hunt-id=" + uuid;
     fetch(URL)
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject => {
@@ -116,9 +117,9 @@ function loadAnswer(ans) {
         .then(json => {
             if (json.status=== 'OK' && json['correct'] === false){
                 let error = document.getElementById("errorMessages");
-                error.innerHTML += json['message'];
+                error.innerHTML = json['message'];
                 let score = document.getElementById("score");
-                score.innerHTML += json['scoreAdjustment'] + " points"
+                score.innerHTML = json['scoreAdjustment'] + " points"
             }
             else if (json.status=== 'OK' && json['correct'] === true) {
                 window.location.reload();
@@ -169,8 +170,11 @@ function Leaderboard() {
             }
             else {
                 let leaderboard = json['leaderboard'];
+                let options = { day: 'numeric', month:'short', hour:'2-digit', minute: '2-digit', second:'2-digit'};
                 for(let i=0;i<leaderboard.length;i++){
-                    list += '<li>' + leaderboard[i]['player'] + ", " + leaderboard[i]['score'] + ", " + leaderboard[i]['completionTime'] + "</li>";
+                    let date = new Date(leaderboard[i]['completionTime']);
+                    let formattedDate = date.toLocaleDateString("en-UK", options);
+                    list += '<li>' + leaderboard[i]['player'] + ", " + leaderboard[i]['score'] + ", " + formattedDate + "</li>";
                 }
                 list+='</ol>';
                 document.getElementById('list').innerHTML=list;
