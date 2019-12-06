@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Start Treasure Hunt!</title>
-    <link rel="stylesheet" href="style.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div class="text">
-        <h1>Welcome to the Treasure Hunt!</h1><br><br>
-        Tell us yer name t' start playin'!
-        <br><br>
-        <div>Username: <input id="playerName" class="input" type="text"></div>
-        <br>
-        <div id="errorMessages" class="errorMessages">
+    <head>
+        <meta charset="UTF-8">
+        <title>Start Treasure Hunt!</title>
+        <link rel="stylesheet" href="style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="text">
+            <h1>Welcome to the Treasure Hunt!</h1><br><br>
+            Tell us yer name t' start playin'!
+            <br><br>
+            <div>Username: <input id="playerName" class="input" type="text"></div>
+            <br>
+            <div id="errorMessages" class="errorMessages"></div>
+            <button onclick="start();" id="start" value="Start">Continue</button>
         </div>
-        <button onclick="start();" id="start" value="Start">Continue</button>
-    </div>
-    <script src="th-api.js"></script>
-</body>
+        <script src="th-api.js"></script>
+    </body>
 </html>

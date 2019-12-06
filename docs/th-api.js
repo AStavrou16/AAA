@@ -1,6 +1,7 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
 
+
 // Function to call a list of Treasure Hunts.
 function callList() {
     let treasureHuntsElement = document.getElementById("treasureHunts");
@@ -9,7 +10,9 @@ function callList() {
         .then(jsonObject => {
             let treasureHunts = jsonObject['treasureHunts'];
             for (let i = 0; i < treasureHunts.length; i++) {
-                treasureHuntsElement.innerHTML += "<a href='start.html'>" + treasureHunts[i].name + "</a><br>"
+                let uuid = treasureHunts[i]['uuid'];
+                console.log(uuid);
+                treasureHuntsElement.innerHTML += "<a href='start.html?uuid='>" + treasureHunts[i].name + "</a><br>"
             }
         });
 }
@@ -19,7 +22,7 @@ function start(){
     let error = document.getElementById("errorMessages");
     let playerName=document.getElementById("playerName").value;
     let app="treasure-hunt";
-    let URL="https://codecyprus.org/th/api/start?player="+playerName+"&app="+app+"&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw";
+    let URL=TH_BASE_URL+"start?player="+playerName+"&app="+app+"&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw";
     fetch(URL)
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject => {

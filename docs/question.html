@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Question</title>
-    <link rel="stylesheet" href="style.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body onload="LoadQuestion();">
-
-    <h1>Question</h1>
-    <br>
-    <div id="question"></div>
-    <br><br>
-    <div id="text">
+    <head>
+        <meta charset="UTF-8">
+        <title>Question</title>
+        <link rel="stylesheet" href="style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="LoadQuestion();">
+        <h1>Question</h1>
+        <br>
+        <div id="question"></div>
+        <br><br>
+        <div id="text">
             <input id="textAnswer" type="text">
             <input id="submitText" value="submit" type="submit" onclick="loadAnswer(document.getElementById('textAnswer').value)">
-    </div>
+        </div>
 
-    <!--GETTING THE ANSWER AS BOOLEAN-->
-    <div id="boolean">
+        <!--GETTING THE ANSWER AS BOOLEAN-->
+        <div id="boolean">
+            <button value="True" onclick="loadAnswer('true')">True</button>
+            <button value="False" onclick="loadAnswer('false')">False</button>
+        </div>
 
-        <button value="True" onclick="loadAnswer('true')">True</button>
-        <button value="False" onclick="loadAnswer('false')">False</button>
-    </div>
-
-    <!-- NEED CHANGE. GETTING THE ANSWER AS INTEGER-->
-    <div id="integer">
+        <!-- NEED CHANGE. GETTING THE ANSWER AS INTEGER-->
+        <div id="integer">
             <input  id="int" type="number">
             <input id="submitInt" value="submit" type="submit" onclick="loadAnswer(document.getElementById('int').value)">
-    </div>
+        </div>
 
-    <!--GETTING THE ANSWER AS DECIMAL-->
-    <div id="decimal">
-        <input type="number" onkeyup="textarea.value.match(/^\d+(\.\d+)?$/)">
-        <input id="submitDecimal" value="submit" type="submit">
-    </div>
+        <!--GETTING THE ANSWER AS DECIMAL-->
+        <div id="decimal">
+            <input type="number" onkeyup="textarea.value.match(/^\d+(\.\d+)?$/)">
+            <input id="submitDecimal" value="submit" type="submit">
+        </div>
 
-    <!--GETTING THE ANSWER AS CHARACTER-->
-    <div id="mcq">
-        <button value="A" onclick="loadAnswer('A')">A</button>
-        <button value="B" onclick="loadAnswer('B')">B</button>
-        <button value="C" onclick="loadAnswer('C')">C</button>
-        <button value="D" onclick="loadAnswer('D')">D</button>
-    </div>
-    <br><br>
-    <button id="skip" onclick="skip()">Skip</button>
-    <br><br>
-    <button onclick="location.href='QRscanner.html?session=' + getParameter('session');">Use QR Scanner</button>
+        <!--GETTING THE ANSWER AS CHARACTER-->
+        <div id="mcq">
+            <button value="A" onclick="loadAnswer('A')">A</button>
+            <button value="B" onclick="loadAnswer('B')">B</button>
+            <button value="C" onclick="loadAnswer('C')">C</button>
+            <button value="D" onclick="loadAnswer('D')">D</button>
+        </div>
+        <br><br>
+        <button id="skip" onclick="skip()">Skip</button>
+        <br><br>
+        <button onclick="location.href='QRscanner.html?session=' + getParameter('session');">Use QR Scanner</button>
 
-    <!--DISPLAY ERROR MESSAGE-->
-    <div id="errorMessages" class="errorMessages"></div>
+        <!--DISPLAY ERROR MESSAGE-->
+        <div id="errorMessages" class="errorMessages"></div>
+        <div id="score"></div>
 
-    <div id="score"></div>
-
-    <!--JAVASCRIPT-->
-    <script src="th-api.js"></script>
-</body>
+        <!--JAVASCRIPT-->
+        <script src="th-api.js"></script>
+    </body>
 </html>
